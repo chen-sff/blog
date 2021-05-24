@@ -18,7 +18,7 @@ const upload = multer({
     }
 })
 
-// ejs模板引擎的设置
+// ejs 模板引擎的设置
 app.set('view engine', 'html')
 app.set('views', `${__dirname}/views`)
 app.engine('html', require('ejs').renderFile)

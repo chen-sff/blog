@@ -73,13 +73,11 @@ app.post('/admin/*', upload.single('upload'), (req, res, next) => {
 })
 
 // 调用后台首页
-app.use(/\/admin\/(index)?/, require('./router/admin/index'))
+app.use('/admin/', require('./router/admin/article'))
 // 调用后台文章管理
 app.use('/admin/article', require('./router/admin/article'))
 // 调用后台类目管理
 app.use('/admin/category', require('./router/admin/category'))
-// 调用后台日志管理
-app.use('/admin/log', require('./router/admin/log'))
 // 调用后台账户管理
 app.use('/admin/account', require('./router/admin/account'))
 

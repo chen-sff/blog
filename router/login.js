@@ -3,7 +3,6 @@
  */
 const express = require('express')
 const User = require('../model/user')
-const log = require('../middleware/log')
 
 // 文章子应用
 const loginApp = express()

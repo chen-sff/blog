@@ -18,7 +18,7 @@ const upload = multer({
     }
 })
 
-// ejs 模板引擎的设置
+// ejs  模板引擎的设置
 app.set('view engine', 'html')
 app.set('views', `${__dirname}/views`)
 app.engine('html', require('ejs').renderFile)
@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }))
 // SESSION配置
 app.use(session({
     keys: ['secret'],
-    maxAge: 1000 * 60 * 30
+    maxAge: 1000 * 60 * 30 //30分钟
 }))
 
 // SESSION延期
@@ -83,7 +83,7 @@ app.use('/admin/log', require('./router/admin/log'))
 // 调用后台账户管理
 app.use('/admin/account', require('./router/admin/account'))
 
-// 退出
+// 退出操作
 app.get('/user/logout', (req, res) => {
     req.session.user = null
     res.render('login', { msg: '退出成功' })

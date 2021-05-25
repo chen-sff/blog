@@ -22,7 +22,6 @@ loginApp.post('/', (req, res, next) => {
                 handle: '登录',
                 ip: req.ip.split(':')[3]
             }
-            log.add(req, res, next)
             // session存储（key=value）
             req.session.user = result
             res.redirect('/')

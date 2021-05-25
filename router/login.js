@@ -28,7 +28,7 @@ loginApp.post('/', (req, res, next) => {
         } else {
             res.render('login', { msg: '登录失败！用户名或密码错误' })
         }
-    }).catch(err => {
+    }).catch(err => { 
         next(err)
     })
 })

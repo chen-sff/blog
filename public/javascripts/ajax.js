@@ -14,7 +14,7 @@ $.ajax({
                 <td>
                 </td>
                 <td>
-                <input type="button" name="edit" class="Edit" value="编辑">
+                <input onclick='location.href=("/admin/article/edit")' type="button" name="edit" class="Edit" value="编辑" >
                 <input type="button" name="del" class="del" data-id=${data[i].id} value="删除">
                 </td>
             </tr>

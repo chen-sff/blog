@@ -7,15 +7,66 @@
     <title>首页</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1658828_vud4w73neg.css">
-    <link rel="stylesheet" href="/admin/css/style.css">
+    <link rel="stylesheet" href="../../../public/stylesheets/style2.css">
 </head>
 
 <body class="bg-light">
-    <%- include('../header.html')  -%>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="../static/img/logo.png" width="30" height="30" alt="">
+            个人中心
+        </a>
+        <div class="navbar-nav">
+            <a href="../index.html" class="nav-link">博客首页</a>
+        </div>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+                    admin
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/admin">个人中心</a>
+                    <a class="dropdown-item" href="/user/logout">退出</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
 
     <div class="container-fluid vh-100">
         <div class="row h-100">
-            <%- include('../navs.html') -%>
+            <div class="col-2 bg-white border-right nav-left p-0">
+                <div class="row text-center mt-3  px-5">
+                    <a href="../article/add.html" class="btn btn-primary rounded-0 col">发表博文</a>
+                </div>
+                <div class="list-group list-group-flush border-top border-bottom mt-3 text-center">
+                    <li class="list-group-item list-group-item-action">
+                        <a href="../index.html" class="text-decoration-none text-secondary">
+                            <i class="iconfont icon-home pr-1"></i>个人中心
+                        </a>
+                    </li>
+                    <li class="list-group-item list-group-item-action">
+                        <a href="../article/index.html" class="text-decoration-none text-secondary">
+                            <i class="iconfont icon-neirongguanli pr-1"></i>文章管理
+                        </a>
+                    </li>
+                    <li class="list-group-item list-group-item-action active">
+                        <a href="../category/index.html" class="text-decoration-none text-secondary">
+                            <i class="iconfont icon-leimuguanli pr-1"></i>类目管理
+                        </a>
+                    </li>
+                    <li class="list-group-item list-group-item-action">
+                        <a href="../log/index.html" class="text-decoration-none text-secondary">
+                            <i class="iconfont icon-log pr-1"></i>查看日志
+                        </a>
+                    </li>
+                    <li class="list-group-item list-group-item-action">
+                        <a href="../account/index.html" class="text-decoration-none text-secondary">
+                            <i class="iconfont icon-zhanghuguanli pr-1"></i>账户管理
+                        </a>
+                    </li>
+                </div>
+            </div>
             <div class="col-10">
                 <div class="p-3 border mb-3 bg-white">
                     <h4 class="mb-0">类目管理</h4>
@@ -37,26 +88,42 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% categories.forEach(category => { %>
-
                                         <tr>
-                                            <th><%=category.id%></th>
-                                            <td title="双击修改"><input type="text" name="name" value="<%=category.name%>"
-                                                    class="form-control text-center bg-white border-0 dbcedit"
-                                                    onchange="setname(<%=category.id%>,this.value)" disabled>
+                                            <th>1</th>
+                                            <td title="双击修改"><input type="text" name="name" value="栏目1"
+                                                    class="form-control text-center bg-white border-0 dbcedit" onchange="sub_name(1,this.value)" disabled>
                                             </td>
-                                            <td title="双击修改"><input type="text" name="index" value="<%=category.index%>"
-                                                    class="form-control text-center bg-white border-0 dbcedit"
-                                                    onchange="setindex(<%=category.id%>,this.value)" disabled>
+                                            <td title="双击修改"><input type="text" name="index" value="1"
+                                                    class="form-control text-center bg-white border-0 dbcedit" disabled>
                                             </td>
                                             <td>
-                                                <button class="btn btn-link text-danger"
-                                                    onclick="del(<%=category.id%>)"><i
-                                                        class="iconfont icon-delete"></i>删除</button>
+                                                <button class="btn btn-link text-danger" onclick="del(1)"><i class="iconfont icon-delete"></i>删除</button>
                                             </td>
                                         </tr>
-
-                                        <% }) %>
+                                        <tr>
+                                            <th>2</th>
+                                            <td title="双击修改"><input type="text" name="name" value="栏目2"
+                                                    class="form-control text-center bg-white border-0 dbcedit" disabled>
+                                            </td>
+                                            <td title="双击修改"><input type="text" name="index" value="1"
+                                                    class="form-control text-center bg-white border-0 dbcedit" disabled>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-link text-danger" onclick="del(1)"><i class="iconfont icon-delete"></i>删除</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>3</th>
+                                            <td title="双击修改"><input type="text" name="name" value="栏目3"
+                                                    class="form-control text-center bg-white border-0 dbcedit" disabled>
+                                            </td>
+                                            <td title="双击修改"><input type="text" name="index" value="1"
+                                                    class="form-control text-center bg-white border-0 dbcedit" disabled>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-link text-danger" onclick="del(1)"><i class="iconfont icon-delete"></i>删除</button>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -66,8 +133,7 @@
                                             <td><input type="text" name="index" value=""
                                                     class="form-control text-center bg-white"></td>
                                             <td>
-                                                <button class="btn btn-link text-primary" onclick="save(this)"><i
-                                                        class="iconfont icon-bianji"></i>保存</button>
+                                                <button class="btn btn-link text-primary" onclick="save(this)"><i class="iconfont icon-bianji"></i>保存</button>
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -86,62 +152,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.6/holder.min.js"></script>
     <script src="https://gw.alipayobjects.com/os/lib/antv/g2/3.5.12/dist/g2.min.js"></script>
     <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.2/dist/data-set.min.js"></script>
-    <script src="/admin/js/public.js"></script>
+    <script src="../../../public/javascripts/public2.js"></script>
     <script>
-        function setname(id, name) {
-            $.post('/admin/category/setname',{id:id,name:name},function(res){
-                if (res.code == 1) {
-                    showToasts('成功', '修改类目名称成功')
-                    setTimeout(function () {
-                        location.reload()
-                    }, 3000)
-                } else {
-                    showToasts('失败', '修改类目名称失败')
-                }
-            })
+        function sub_name(id,name){
+            console.log(id,name)
         }
 
-        function setindex(id, index) {
-            $.post('/admin/category/setindex',{id:id,index:index},function(res){
-                if (res.code == 1) {
-                    showToasts('成功', '修改类目索引成功')
-                    setTimeout(function () {
-                        location.reload()
-                    }, 3000)
-                } else {
-                    showToasts('失败', '修改类目索引失败')
-                }
-            })
-        }
-
-        function save(t) {
+        function save(t){
             let name = $(t).parents('tr').find("[name='name']").val()
             let index = $(t).parents('tr').find("[name='index']").val()
-
-            $.post('/admin/category/add', { name: name, index: index }, function (res) {
-                if (res.code == 1) {
-                    showToasts('成功', '添加类目成功')
-                    setTimeout(function () {
-                        location.reload()
-                    }, 3000)
-                } else {
-                    showToasts('失败', '添加类目失败')
-                }
-            })
+            console.log(name,index)
         }
 
-        function del(id) {
-            if (confirm('确认删除?')) {
-                $.getJSON('/admin/category/del', { id: id }, function (res) {
-                    if (res.code == 1) {
-                        showToasts('成功', '删除类目成功')
-                        setTimeout(function () {
-                            location.reload()
-                        }, 3000)
-                    } else {
-                        showToasts('失败', '删除类目失败')
-                    }
-                })
+        function del(id){
+            if(confirm('确认删除?')){
+                console.log(id)
             }
         }
     </script>

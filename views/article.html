@@ -1,40 +1,107 @@
-<%- include('header.html')  -%>     
-<div class="container mt-4">    //公共部分单独提取出来
-    <nav> 
-        <ol class="breadcrumb bg-white">
-            <li class="breadcrumb-item"><a href="/">首页</a></li>
-            <li class="breadcrumb-item"><a href="/article/list/<%=article.category_id%>"><%=article.name%></a></li>
-            <li class="breadcrumb-item active"><%=article.title%></li>
-        </ol>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>文章详情页</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="/img/logo.png" width="30" height="30" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">link1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">link2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">link3</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">link4</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 ml-5" method="get" action='/article/search'>
+                <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="请输入关键词...">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+            </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/login" class="nav-link">登录</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+                        admin
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/admin">后台管理</a>
+                        <a class="dropdown-item" href="/user/logout">退出</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </nav>
-    <div class="card content">
-        <div class="card-header bg-white">
-            <h3 class="card-title m-0"><%=article.title%></h3>
-            <p class="text-muted small mt-2 m-0">
-                <span class="mr-3">发表时间：<%=article.time.toLocaleString()%></span>
-                <span class="mr-1">点击：<%=article.hits%></span>
-            </p>
+    <div class="container mt-4">
+        <nav>
+            <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item"><a href="/">首页</a></li>
+                <li class="breadcrumb-item"><a href="#">类目名称</a></li>
+                <li class="breadcrumb-item active">文章标题</li>
+            </ol>
+        </nav>
+        <div class="card">
+            <div class="card-header bg-white">
+                <h3 class="card-title m-0">文章标题</h3>
+                <p class="text-muted small mt-2 m-0">
+                    <span class="mr-3">发表时间：2018-10-10 20:14:52</span>
+                    <span class="mr-1">点击：120</span>
+                </p>
+            </div>
+            <div class="card-body">文章内容...</div>
+            <div class="card-footer bg-white border-0">
+                <span class="badge badge-pill">标签1</span>
+                <span class="badge badge-pill">标签2</span>
+                <span class="badge badge-pill">标签3</span>
+                <span class="badge badge-pill">标签4</span>
+                <span class="badge badge-pill">标签5</span>
+            </div>
         </div>
-        <div class="card-body"><%-article.content%></div>
-        <div class="card-footer bg-white border-0">
-            <% tabs.forEach(tab => { %>
-            <span class="badge badge-pill"><%=tab.name%> </span>
-            <% }) %>
-        </div>
+        <nav>
+            <ul class="pagination mt-3">
+                <li class="page-item">
+                    <a class="page-link" href="#">上一篇：文章标题</a>
+                </li>
+                <li class="page-item ml-auto">
+                    <a class="page-link" href="#">下一篇：文章标题</a>
+                </li>
+            </ul>
+        </nav>
     </div>
-    <nav>
-        <ul class="pagination mt-3">
-            <% if (prev) { %>
-            <li class="page-item">
-                <a class="page-link" href="/article/<%=prev.id%>">上一篇：<%=prev.title%></a>
-            </li>
-            <% } %>
-            <% if (next) { %>
-            <li class="page-item ml-auto">
-                <a class="page-link" href="/article/<%=next.id%>">下一篇：<%=next.title%></a>
-            </li>
-            <% } %>
-        </ul>
-    </nav>
-</div>
-<%- include('footer.html')  -%>
+    <footer class="bg-dark p-3 mt-3  text-center text-secondary small">
+        <a href="#" class="text-secondary small">苏ICP备00000000号</a>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.6/holder.min.js"></script>
+    <script src="../public/javascripts/public.js"></script>
+</body>
+
+</html>

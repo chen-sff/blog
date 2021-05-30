@@ -9,6 +9,8 @@ router.get('/', function(req, res, next) {
   res.render('admin/article/index');
 });
 
+
+
 //ajax article显示
 router.post('/viewAjax',function(req,res){
   var selectSql = "select * from article"

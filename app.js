@@ -6,9 +6,10 @@ var logger = require('morgan');
 var ejs = require('ejs');     //引入模版引擎
 
 var indexRouter = require('./routes/index');
-var registerRouter = require('./routes/register')
-var loginRouter = require('./routes/login')
-var articleRouter = require('./routes/article')
+var registerRouter = require('./routes/register');
+var loginRouter = require('./routes/login');
+var articleRouter = require('./routes/article');
+var frontArticle = require('./routes/frontArticle');
 
 
 var app = express();
@@ -29,6 +30,8 @@ app.use('/', indexRouter);
 app.use('/register', registerRouter);
 app.use('/login',loginRouter);
 app.use('/admin/article',articleRouter);
+app.use('/article',frontArticle);
+
 
 
 // catch 404 and forward to error handler

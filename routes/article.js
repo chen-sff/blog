@@ -3,27 +3,19 @@ var router = express.Router();
 var MysqlPool = require('./db/mysqlPool');
 const mysqlPool = new MysqlPool();
 const pool = mysqlPool.getPool();
+ 
 
-/* GET home page. */
+
+// 显示
 router.get('/', function(req, res, next) {
-  res.render('admin/article/index');
-});
-
-
-
-//ajax article显示
-router.post('/viewAjax',function(req,res){
-  var selectSql = "select * from article"
-  pool.getConnection((err,connection)=>{
-    connection.query(selectSql,function(err,result){
-      console.log(result);
-      res.json(result);
-      
+  var selectSql = "select id,title,content from article order by title asc "
+    pool.getConnection((err,connect)=>{
+    console.log(err);
+    connect.query(selectSql,(err,rusult)=>{
+    res.render('admin/article/index',{ data:rusult });
     });
-    connection.release();
-    
   });
-})
+});
 
 // 增功能
 router.get('/add', function(req, res, next) {
@@ -32,7 +24,7 @@ router.get('/add', function(req, res, next) {
 router.post('/add',function(req,res){
   var article = {
     "title":req.body.title,
-    "content":req.body.content
+    "content":req.body.content 
   }
 var  addSql = 'INSERT INTO article(title,content) VALUES(?,?)';
 var  addSqlParams = [1,req.body.title,req.body.content];
@@ -53,23 +45,55 @@ pool.getConnection((err,connection)=>{
   console.log(err);
 });
 });
-//ajax删除
-router.post('/delAjax',function(req,res){
-  var id = req.body.id;
-  console.log(id);
-  var delSql = "DELETE FROM article WHERE id = '"+id+"'"
-  pool.getConnection((err,connection)=>{
-    connection.query(delSql,function(err,result){
-      res.json({"data":1});
-      // res.json({"data":result})
-    });
-    connection.release();
-  });
-})
+
 // 改功能
-router.get('/edit', function(req, res, next) {
-  res.render('admin/article/edit');
+router.get('/edit/:id', function(req, res, next) {
+  var selectSql = "select id,title,content from article where id = ?";
+  pool.getConnection((err,connect)=>{
+  console.log(err);
+  connect.query(selectSql,[req.params.id],(err,rusult)=>{
+  res.render('admin/article/edit',{ obj:rusult[0] });
+  });
 });
+});
+router.post("/edit",(req,res)=>{
+  var updateSql = "update article set title = ?,content = ? where id = ?";
+  var update2Sql = "update article set content=replace(content,'<p>','') "
+  var update3Sql = "update article set content=replace(content,'</p>','') "
+  pool.getConnection((err,connect)=>{
+  console.log(err);
+  connect.query(updateSql,[req.body.title,req.body.content,req.body.id],(err,rusult)=>{
+    console.log(req.body.id);
+  console.log(err);
+  });
+});
+pool.getConnection((err,connect)=>{
+  console.log(err);
+  connect.query(update2Sql,(err,rusult)=>{
+  console.log(err);
+  });
+});
+pool.getConnection((err,connect)=>{
+  console.log(err);
+  connect.query(update3Sql,(err,rusult)=>{
+  res.redirect("/admin/article");
+  console.log(err);
+  });
+});
+})
+// 删除
+router.post("/",(req,res)=>{
+  var delSql = "DELETE FROM article WHERE id = ? ";
+  pool.getConnection((err,connect)=>{
+  console.log(err);
+  connect.query(delSql,[req.body.id],(err,rusult)=>{
+    console.log(req.body.id);
+  res.redirect("/admin/article");
+  console.log(err);
+  console.log(rusult);
+  });
+});
+})
 
 
 module.exports = router;

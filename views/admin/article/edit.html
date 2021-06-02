@@ -80,14 +80,16 @@
                                 <form action="/admin/article/edit" method="POST">
                                     <div class="form-row">
                                         <label for="title" class="col-2 text-center col-form-label">标题：</label>
-                                        <input type="text" class="col-8 form-control" name="title" id="title" required>
+                                        <input type="text" class="col-8 form-control" name="title" id="title" value="<%=obj.title%>" >
                                         <span class="col-2 col-form-label text-danger">* 必填项</span>
                                     </div>
-                                
+                                    <div>
+                                    <input type="hidden" name="id"  value="<%=obj.id%>">
+                                    </div>
                                     <div class="form-row mt-3">
                                         <label for="ue_content" class="col-2 text-center col-form-label">内容：</label>
                                         <div class="col-8 p-0">
-                                            <textarea id="editor" name="content"></textarea>
+                                            <textarea id="editor" name="content"><%=obj.content%></textarea>
                                         </div>
                                         <span class="col-2 col-form-label text-danger">* 必填项</span>
                                     </div>

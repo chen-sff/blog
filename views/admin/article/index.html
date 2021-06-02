@@ -114,9 +114,19 @@
                                             <th>操作</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="view">
-                                        <!-- <input type="button" name="edit" class="Edit" value="编辑">
-                                        <input type="button" name="del" class="Del" value="删除"> -->
+                                    <tbody action="/admin/article" method="POST">
+                                        <% for(var i of data){%>
+                                        <tr>    
+                                            <th><%=i.id%></th>
+                                            <td><%=i.title%></td>
+                                            <td><%=i.content%></td>
+                                            <td></td>
+                                            <td>
+                                            <input type="button" name="edit" class="upd" value="编辑" data_id="<%=i.id%>" >
+                                            <input type="button" name="del" class="del" data_id="<%=i.id%>"value="删除">
+                                            </td>
+                                        </tr>
+                                        <% } %>
                                     </tbody>
                                 </table>
                                 <nav class="d-flex justify-content-between border-top pt-3 px-3">
@@ -144,14 +154,17 @@
     <script src="https://gw.alipayobjects.com/os/lib/antv/g2/3.5.12/dist/g2.min.js"></script>
     <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.2/dist/data-set.min.js"></script>
     <script src="http://localhost:3000/javascripts/public2.js"></script>
-    <script src="http://localhost:3000/javascripts/ajax.js"></script>
-    <script src="http://localhost:3000/javascripts/del.js"></script>
     <script>
-        // Array.from(document.getElementsByClassName("Edit")).forEach(i=>{
-        //     i.onclick  = function(){
-        //         alert(1)
-        //     }
-        // })
+        Array.from(document.getElementsByClassName("upd")).forEach(i=>{
+            i.onclick  = function(){
+                window.location.href = "http://localhost:3000/admin/article/edit/"+this.getAttribute("data_id");
+            }
+        })
+        Array.from(document.getElementsByClassName("del")).forEach(i=>{
+            i.onclick  = function(){
+                window.location.href = "http://localhost:3000/admin/article/"+this.getAttribute("data_id");
+            }
+        })
     </script>
 </body>
     

@@ -27,6 +27,8 @@ router.post('/add',function(req,res){
     "content":req.body.content 
   }
 var  addSql = 'INSERT INTO article(title,content) VALUES(?,?)';
+var update2Sql = "update article set content=replace(content,'<p>','') "
+var update3Sql = "update article set content=replace(content,'</p>','') "
 var  addSqlParams = [req.body.title,req.body.content];
 pool.getConnection((err,connection)=>{
   connection.query(addSql,addSqlParams,function(err,result){
@@ -35,14 +37,23 @@ pool.getConnection((err,connection)=>{
       res.end("0");//如果注册失败就给客户端返回0
       return;//如果失败了就直接return不会继续下面的代码
     }else if(result){
-     console.log("OK");
-     res.redirect('/admin/article')
-     res.end();
     }
   });
-  console.log(article);
   connection.release();
   console.log(err);
+});
+pool.getConnection((err,connect)=>{
+  console.log(err);
+  connect.query(update2Sql,(err,rusult)=>{
+  console.log(err);
+  });
+});
+pool.getConnection((err,connect)=>{
+  console.log(err);
+  connect.query(update3Sql,(err,rusult)=>{
+  res.redirect("/admin/article");
+  console.log(err);
+  });
 });
 });
 
@@ -54,6 +65,7 @@ router.get('/edit/:id', function(req, res, next) {
   connect.query(selectSql,[req.params.id],(err,rusult)=>{
   res.render('admin/article/edit',{ obj:rusult[0] });
   });
+  connect.release();
 });
 });
 router.post("/edit",(req,res)=>{
@@ -66,6 +78,7 @@ router.post("/edit",(req,res)=>{
     console.log(req.body.id);
   console.log(err);
   });
+  connect.release();
 });
 pool.getConnection((err,connect)=>{
   console.log(err);
@@ -91,7 +104,11 @@ router.get("/:id",(req,res)=>{
   res.redirect("/admin/article");
   console.log(err);
   console.log(rusult);
+  res.end();
   });
+
+  connect.release();
+
 });
 })
 

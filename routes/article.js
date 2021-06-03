@@ -27,7 +27,7 @@ router.post('/add',function(req,res){
     "content":req.body.content 
   }
 var  addSql = 'INSERT INTO article(title,content) VALUES(?,?)';
-var  addSqlParams = [1,req.body.title,req.body.content];
+var  addSqlParams = [req.body.title,req.body.content];
 pool.getConnection((err,connection)=>{
   connection.query(addSql,addSqlParams,function(err,result){
     if(err){
@@ -82,12 +82,12 @@ pool.getConnection((err,connect)=>{
 });
 })
 // 删除
-router.post("/",(req,res)=>{
+router.get("/:id",(req,res)=>{
   var delSql = "DELETE FROM article WHERE id = ? ";
   pool.getConnection((err,connect)=>{
   console.log(err);
-  connect.query(delSql,[req.body.id],(err,rusult)=>{
-    console.log(req.body.id);
+  connect.query(delSql,[req.params.id],(err,rusult)=>{
+    console.log(req.params.id);
   res.redirect("/admin/article");
   console.log(err);
   console.log(rusult);

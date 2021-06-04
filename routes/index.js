@@ -14,6 +14,19 @@ pool.getConnection((err,connect)=>{
     });
   });
 });
+router.get('/search', function(req, res, next) {
+  var searchSql = "select id,title,content from article  "
+  pool.getConnection((err,connect)=>{
+    console.log(err);
+    connect.query(searchSql,[req.query.id,req.query.title,req.query.content],(err,rusult)=>{
+      console.log(req.query.keyword);
+      res.render('search',{ data:rusult[0] });
+
+      });
+    });
+  });
+
+
 
 
 

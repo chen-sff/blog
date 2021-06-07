@@ -17,7 +17,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             
-            <form class="form-inline my-2 my-lg-0 ml-5" method="get" action='/search'>
+            <form class="form-inline my-2 my-lg-0 ml-5" method="GET" action='/search'>
                 <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="请输入关键词...">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
             </form>
@@ -48,17 +48,15 @@
 <div class="container mt-5">
     <h2 class="mb-4">最新博文</h2>
     <div class="row row-cols-4">
-        <% 
-            for(var o of data){
-        %>
+        <%  for(var o in data){%>
         <div class="col my-3">
             <div class="card h-100">
                 <img src="holder.js/100px150" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title"><%=o.title%></h5>
+                    <h5 class="card-title"><%=data[o].title%></h5>
                     <p class="card-text"><small class="text-muted">2018-10-10 20:14:52</small></p>
-                    <p class="card-text"><%=o.content%></p>
-                    <a href="/article/<%=o.id%>" class="stretched-link"></a>
+                    <p class="card-text"><%=data[o].content%></p>
+                    <a href="/article/<%=data[o].id%>" class="stretched-link"></a>
                 </div>
             </div>
         </div>

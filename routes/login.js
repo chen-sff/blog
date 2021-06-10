@@ -28,7 +28,9 @@ pool.getConnection((err,connection)=>{
        }
     else{
         console.log("OK");
-        res.redirect('/');
+        req.session.name = result[0].username;
+        console.log(req.session.name);
+        res.redirect('/index');
         res.end();
        }  
   });

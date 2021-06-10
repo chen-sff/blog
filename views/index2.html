@@ -22,13 +22,15 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
             </form>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="/login" class="nav-link">登录</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+                        <%= username%>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/admin/article">后台管理</a>
+                        <a class="dropdown-item" href="/">退出</a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a href="/register" class="nav-link">注册</a>
-                </li>
-                
             </ul>
         </div>
     </nav>

@@ -15,6 +15,17 @@ pool.getConnection((err,connect)=>{
   });
 });
 
+router.get('/index', function(req, res, next) {
+  var selectSql = "select id,title,content from article order by title asc "
+  pool.getConnection((err,connect)=>{
+    console.log(err);
+    connect.query(selectSql,(err,rusult)=>{
+      var n = req.session.name;
+      res.render('index2',{ data:rusult , username : n});
+      });
+    });
+  });
+
 
   router.get('/search', function(req, res, next) {
     var searchSql = "select id,title,content from article where title like'%"+req.query.keyword+"%'"

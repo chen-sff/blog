@@ -20,7 +20,7 @@ pool.getConnection((err,connect)=>{
     var searchSql = "select id,title,content from article where title like'%"+req.query.keyword+"%'"
     pool.getConnection((err,connect)=>{
       connect.query(searchSql,(err,rusult)=>{
-        if(err){
+        if(err){ 
           console.log(err);
         }
         
@@ -29,9 +29,5 @@ pool.getConnection((err,connect)=>{
         });
       });
     });
-
-
-
-
 
 module.exports = router;

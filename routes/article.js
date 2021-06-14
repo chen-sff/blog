@@ -8,7 +8,7 @@ const pool = mysqlPool.getPool();
 
 // 显示
 router.get('/', function(req, res, next) {
-  var selectSql = "select id,title,content from article order by title asc "
+  var selectSql = "select id,title,content from article order by id asc "
     pool.getConnection((err,connect)=>{
     console.log(err);
     connect.query(selectSql,(err,rusult)=>{

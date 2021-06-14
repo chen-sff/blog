@@ -27,11 +27,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret:"123",
+  secret:"123",//设置签名秘钥 内容可以任意填写
   name : "cdw",
   resave : false ,
   saveUninitialized : true,
-  cookie : {maxAge:8000000000000}
+  cookie : {maxAge:8000000000000}//设置cookie的过期时间，例：80s后    session和相应的cookie失效过期
 }))
 
 app.use('/', indexRouter);
